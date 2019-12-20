@@ -13,7 +13,88 @@
 		<org.slf4j-version>1.7.13</org.slf4j-version>
 		<jaxb.version>2.3.0</jaxb.version>
         	<activation.version>1.1.1</activation.version>
+		<version.wildfly.maven.plugin>2.0.0.Final</version.wildfly.maven.plugin>
+		<version.org.wildfly.checkstyle-config>1.0.7.Final</version.org.wildfly.checkstyle-config>
+		<version.org.wildfly.quickstarts.documentation.plugin>2.0.0.Final</version.org.wildfly.quickstarts.documentation.plugin>
+		<!-- other plug-in versions -->
+		<version.com.mycyla.license>3.0</version.com.mycyla.license>
+		<version.checkstyle>8.5</version.checkstyle>
+		<version.jaxws-tools-maven-plugin>1.2.3.Final</version.jaxws-tools-maven-plugin>
+		<!-- Explicitly declaring the source encoding eliminates the following
+		    message: [WARNING] Using platform encoding (UTF-8 actually) to copy
+		    filtered resources, i.e. build is platform dependent! -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<!-- Protocol to use for communication with remote maven repositories.
+			     You can set to 'http' if you are using a maven proxy and 'https'
+			     interferes with that. Use 'https' for builds that will be released
+			     to non-snapshot public maven repos -->
+		<maven.repository.protocol>https</maven.repository.protocol>
+		<!-- The full remote maven repo URL; can be overridden via -D for special use cases -->
+		<maven.repository.url>${maven.repository.protocol}://repository.jboss.org/nexus/content/groups/public/</maven.repository.url>
+		<!-- https://access.redhat.com/maven-repository -->
+		<maven.redhat.repository.url>${maven.repository.protocol}://maven.repository.redhat.com/ga/</maven.redhat.repository.url>
+
+
+
+
 	</properties>
+
+    <repositories>
+        <repository>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+            <id>jboss-public-repository-group</id>
+            <name>JBoss Public Repository Group</name>
+            <url>${maven.repository.url}</url>
+            <layout>default</layout>
+        </repository>
+        <repository>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+            <id>jboss-enterprise-maven-repository</id>
+            <name>JBoss Enterprise Maven Repository</name>
+            <url>${maven.redhat.repository.url}</url>
+            <layout>default</layout>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <id>jboss-public-repository-group</id>
+            <name>JBoss Public Repository Group</name>
+            <url>${maven.repository.url}</url>
+        </pluginRepository>
+        <pluginRepository>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <id>jboss-enterprise-maven-repository</id>
+            <name>JBoss Enterprise Maven Repository</name>
+            <url>${maven.redhat.repository.url}</url>
+        </pluginRepository>
+    </pluginRepositories>
 
 	<build>
 		<plugins>
@@ -34,6 +115,7 @@
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
+			<!--
 			<plugin>
 				<groupId>org.codehaus.cargo</groupId>
 				<artifactId>cargo-maven2-plugin</artifactId>
@@ -64,7 +146,6 @@
 							<configuration>
 								<properties>
 									<cargo.jvmargs>
-										<!-- Hdiv JVM arguments -->
 									</cargo.jvmargs>
 									<cargo.servlet.port>8080</cargo.servlet.port>
 									<cargo.tomcat.ajp.port>8009</cargo.tomcat.ajp.port>
@@ -75,6 +156,7 @@
 					</execution>
 				</executions>
 			</plugin>
+			-->
 		</plugins>
 		<finalName>insecure-bank</finalName>
 	</build>
