@@ -5,8 +5,11 @@
 ```
 sudo apt install -y openjdk-11-jdk
 sudo apt install -y maven
+```
 
-git clone https://github.com/jknudsen-synopsys/insecure-bank.git
+Now clone this repository.
+
+```
 cd insecure-bank
 mvn clean package
 ```
