@@ -107,7 +107,7 @@
 									</div>
 									<div class="widget-content">
 									<div class="alert alert-success fade in">
-											<button class="close" data-dismiss="alert">×</button>
+											<button class="close" data-dismiss="alert">Ã—</button>
 											<i class="icon ion-checkmark-circled"></i>
 											<strong>Success!</strong> You have successfully made the transfer.
 										</div>
